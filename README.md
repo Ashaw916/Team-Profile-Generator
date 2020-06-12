@@ -1,6 +1,5 @@
 # Team Profile Generator
 
-https://img.shields.io/badge/<LABEL>-<Aaron Young>-<yellow>
 ## description
 A web application that generates profiles for teams of workers.
 ## Table of Contents
