@@ -1,6 +1,6 @@
 # Team Profile Generator
 
-none
+
 ## description
 A web application that generates profiles for teams of workers.
 ## Table of Contents
@@ -10,8 +10,6 @@ A web application that generates profiles for teams of workers.
 - authors
 - Testing
 - Contact
-## Installation Istructions
-none
 ## Usage
 TBA
 ## License
