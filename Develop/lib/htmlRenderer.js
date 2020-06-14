@@ -2,29 +2,29 @@ const path = require("path");
 const fs = require("fs");
 
 const templatesDir = path.resolve(__dirname, "../templates");
-employees 
+
 const render = (employees) => {
-  const html = [];
+  let html = [];
+
+  console.log("reviced by htmlRender");
+  console.log(employees);
 
   html.push(
     employees
       .filter((employee) => employee.getRole() === "Manager")
-      .map((manager) => renderManager(manager))
-      .join(` 
+      .map((manager) => renderManager(manager)).join(` 
       `)
   );
   html.push(
     employees
       .filter((employee) => employee.getRole() === "Engineer")
-      .map((engineer) => renderEngineer(engineer))
-      .join(` 
+      .map((engineer) => renderEngineer(engineer)).join(` 
       `)
   );
   html.push(
     employees
       .filter((employee) => employee.getRole() === "Intern")
-      .map((intern) => renderIntern(intern))
-      .join(` 
+      .map((intern) => renderIntern(intern)).join(` 
       `)
   );
 
