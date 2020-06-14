@@ -62,8 +62,8 @@ inquirer
         ])
         .then((response) => {
           const intern = new Intern(response);
-          employees.push(intern)
-          render(intern);
+          employees.push(intern);
+        //   render(intern);
           printInfo(intern);
         });
     } else if (response.role === "Engineer") {
@@ -92,8 +92,8 @@ inquirer
         ])
         .then((response) => {
           const engineer = new Engineer(response);
-          employees.push(engineer)
-          render(engineer);
+          employees.push(engineer);
+        //   render(engineer);
           printInfo(engineer);
         });
     } else {
@@ -122,11 +122,12 @@ inquirer
         ])
         .then((response) => {
           const manager = new Manager(response);
-          employees.push(manager)
-          render(manager);
+          employees.push(manager);
+        //   render(manager);
           printInfo(manager);
         });
     }
+    render(employees);
   });
 
 // send to htmlREnder
