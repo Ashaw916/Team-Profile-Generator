@@ -2,29 +2,15 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-var express = require("express");
 const path = require("path");
 const fs = require("fs");
-
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "./output/team.html");
-
-// Sets up the Express App
-// =============================================================
-var app = express();
-var PORT = process.env.PORT || 3000;
-
-// // Sets up the Express app to handle data parsing
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
 const render = require("./lib/htmlRenderer.js");
-const { Console, error } = require("console");
-const { response } = require("express");
-const { removeListener } = require("process");
+const OUTPUT_DIR = path.resolve(__dirname, "./output");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
+function write(){
+  fs.writeFileSync(outputPath, render(employees), "utf-8")
+}
 const employees = [];
 
 // choose role
@@ -32,7 +18,7 @@ function addEmployee() {
   inquirer
     .prompt([
       {
-        type: "checkbox",
+        type: "list",
         message: "Choose a role.",
         name: "role",
         choices: ["Intern", "Engineer", "Manager"],
@@ -58,7 +44,9 @@ function addEmployee() {
 
       let specInfo;
       let roleText = response.role;
+
       console.log("role 1st " + roleText);
+
       if (roleText == "Intern") {
         specInfo = "School";
         console.log("if intern");
@@ -94,6 +82,7 @@ function addEmployee() {
             console.log("id " + response.id);
             console.log("email " + response.email);
             console.log("spec " + specInfo);
+
             let nameR = response.name;
             let idR = response.id;
             let emailR = response.email;
@@ -119,23 +108,20 @@ function addEmployee() {
             } else {
                 console.log("done adding team");
             }
-            render(employees);
+        write(employees);
         });
     });
 }
 
-function sendTeam() {}
+
 
 function startApp() {
   addEmployee();
-  sendTeam();
+  write();
 }
 startApp();
 
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "main.html"));
-  });
 
-app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  }); 
+// app.listen(PORT, function() {
+//     console.log("App listening on PORT " + PORT);
+//   }); 
